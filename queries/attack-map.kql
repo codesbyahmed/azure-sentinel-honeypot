@@ -1,0 +1,5 @@
+let GeoIPDB = _GetWatchlist("geoip");
+SecurityEvent
+| where EventID == 4625
+| evaluate ipv4_lookup(GeoIPDB, IpAddress, network)
+| summarize Attempts = count() by countryname, latitude, longitude
