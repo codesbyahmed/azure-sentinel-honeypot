@@ -1,0 +1,6 @@
+// Top 10 attacking countries, geolocated with the built-in geo_info_from_ip_address()
+SecurityEvent
+| where EventID == 4625
+| extend Country = tostring(geo_info_from_ip_address(IpAddress).country)
+| summarize Attempts = count() by Country
+| top 10 by Attempts

@@ -1,3 +1,4 @@
+// Failed logon attempts per hour, rendered as a time chart
 SecurityEvent
 | where EventID == 4625
 | summarize Attempts = count() by bin(TimeGenerated, 1h)
